@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="zh_CN">
+
+<head>
+    <title>Dragable demo with freewall</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="description" content="Freewall demo for draggable" />
+    <meta name="keywords" content="javascript, dynamic, grid, layout, jquery plugin, flex layouts" />
+    <script src="helperjs/jquery.js"></script>
+    <script src="threejs/three.js"></script>
+    <script src="js/VRviewer.js"></script>
+    <script src="helperjs/vue.min.js"></script>
+    <script scr="helperjs/SkyShader.js"></script>
+
+    
+    <script src="helperjs/Animation.js"></script>
+    <script src="helperjs/AnimationHandler.js"></script>
+    <script src="helperjs/progressBar.js"></script>
+    <script src="helperjs/FBXLoader.js"></script>
+    <script src="helperjs/MTLLoader.js"></script>
+    <script src="helperjs/OBJLoader.js"></script>
+    <script src="helperjs/ColladaLoader.js"></script>
+    
+    <script src="helperjs/OrbitControls.js"></script>
+    <script src="helperjs/DeviceOrientationController.js"></script>
+    <script src="helperjs/SkyShader.js"></script>
+    <script src="js/option_watcher.js"></script>
+    
+
+</head>
+
+<body class="layout">
+    <header data-options="region:'north', height: '50'">
+        Header
+    </header>
+    <div class="layout layout--h" data-options="region:'center'">
+        <div data-options="region:'west', width: '50%', min-width: 100, max-width: '800'">
+            <li>
+                <div id="viewer" class="3dmodel" style="width:600px; height:600px; float:left; display:inline">
+                    <script>
+                        var myobject = null;   
+                        //options is defined by option_watcher.js
+                        var myviewer = new VRviewer(myobject, options).loadObject("models/workshop/", "model", "collada", align);
+                        var sensor_controller00=null;
+                        function align() {
+                            for (var m = -1; m < 1; m++) {
+                                for (var j = -4; j < 4; j++) {
+                                    for (var i = -6; i < 5; i++) {
+                                        var mysensor = myviewer.createSensor();
+                                        mysensor.obj.position.set(0 + j * 20, 2 + m * 8, i * 10);
+                                        if ((i == 1) && (j == 0) && (m == 0)) sensor_controller00=mysensor;
+                                        else mysensor.para.alert = false;
+                                        var mysensor = myviewer.createSensor();
+                                        mysensor.obj.position.set(5 + j * 20, 2 + m * 8, i * 10);
+                                        mysensor.para.alert = false;
+                                    }
+                                }
+                            }
+                            sensor_controller00.para.alert = true;
+                            var axisHelper = new THREE.AxisHelper(300);
+                            myviewer.getScene().add(axisHelper);
+                        }
+                    </script>
+                </div>
+            </li>
+        </div>
+
+    </div>
+    <footer data-options="region:'south', height: '30'" class="footer">
+        footer
+    </footer>
+</body>
+
+</html>

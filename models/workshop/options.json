@@ -1,0 +1,26 @@
+{
+    camera: {
+        pos: [0, 100, 100]
+    },
+    directionalLight: {
+        intensity: 0.8,
+        distance: 50
+    },
+    control: {
+        speed: 0.1
+    },
+    sky: {
+        type: "mountain"
+    },
+    floor: {
+        name: "ocean",
+        pos: [0, -8, 0]
+        //pos: [0, -42, 0]
+            //    pos: [0, -45, -8]
+    },
+    model: {
+        position_delta: [0, 0, 0],
+        rotation: [-Math.PI / 2, 0, 0]
+             //   rotation: [0, 0, 0]
+    }
+}

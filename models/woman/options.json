@@ -1,0 +1,27 @@
+{
+    shadow:true,
+    camera: {
+        pos: [282, 146, 24]
+    },
+    directionalLight: {
+        intensity: 0.2,
+        distance: 50
+    },
+    control: {
+        speed: 0.1
+    },
+    sky: {
+        type: "sun"
+    },
+    floor: {
+        visible:true,
+        name: "floor",
+        pos: [0, 0, 0]
+            //    pos: [0, -45, -8]
+    },
+    model: {
+        pos: [0, 18, 0],
+        rotation: [-Math.PI / 2, 0.7, 0]
+            //    rotation: [0, 0, 0]
+    }
+}

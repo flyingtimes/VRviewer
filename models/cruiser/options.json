@@ -1,0 +1,27 @@
+{
+    shadow:false,
+    camera: {
+        pos: [0, 150, 150]
+    },
+    directionalLight: {
+        intensity: 0.7,
+        distance: 50
+    },
+    control: {
+        speed: 0.1
+    },
+    sky: {
+        type: "sun"
+    },
+    floor: {
+        name: "ocean",
+        //pos: [0, -8, 0]
+        pos: [0, 0, 0]
+            //    pos: [0, -45, -8]
+    },
+    model: {
+        position_delta: [0, 30, 0],
+        rotation: [-Math.PI / 2, 0, 0]
+               // rotation: [0, 0, 0]
+    }
+}

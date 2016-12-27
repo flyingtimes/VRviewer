@@ -1,0 +1,161 @@
+<!doctype html>
+<html class="zh_CN">
+
+<head>
+    <title>Dragable demo with freewall</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta name="description" content="Freewall demo for draggable" />
+    <meta name="keywords" content="javascript, dynamic, grid, layout, jquery plugin, flex layouts" />
+    <script src="helperjs/jquery.js"></script>
+    <script src="threejs/three.min.js"></script>
+    <script src="js/VRviewer.js"></script>
+    <script src="helperjs/vue.min.js"></script>
+    <script scr="helperjs/SkyShader.js"></script>
+
+
+    <script src="helperjs/Animation.js"></script>
+    <script src="helperjs/AnimationHandler.js"></script>
+    <script src="helperjs/progressBar.js"></script>
+    <script src="helperjs/FBXLoader.js"></script>
+    <script src="helperjs/MTLLoader.js"></script>
+    <script src="helperjs/OBJLoader.js"></script>
+    <script src="helperjs/ColladaLoader.js"></script>
+    <script src="helperjs/stackblur.min.js"></script>
+
+    <script src="helperjs/OrbitControls.js"></script>
+    <script src="helperjs/DeviceOrientationController.js"></script>
+    <script src="helperjs/SkyShader.js"></script>
+    <script src="helperjs/ShadowMesh.js"></script>
+    <script src="js/saveString.js"></script>
+    <script src="js/TextureLoader1.js"></script>
+    <script src="helperjs/Mirror.js"></script>
+    <script src="helperjs/WaterShader.js"></script>
+
+
+</head>
+
+<body class="layout">
+    <header data-options="region:'north', height: '50'">
+        Header
+    </header>
+    <div style="display:none;" id="jsonid"></div>
+    <div class="layout layout--h" data-options="region:'center'">
+        <div data-options="region:'west', width: '50%', min-width: 100, max-width: '800'">
+            <li>
+                <input id="command" type="text" width="500" size="100" onkeypress="if(event.keyCode==13) exec();else if(event.keyCode==96) hist();"></input>
+
+            </li>
+            <li>
+                <textarea id="result" rows="4" cols="50"></textarea>
+            </li>
+            <li>
+                <div id="viewer" class="3dmodel" style="width:600px; height:400px; float:left; display:inline">
+                    <script>
+                        var hs = [];
+                        (function () {
+                            var baseLogFunction = console.log;
+                            /*
+                            console.log = function () {
+                                
+                                baseLogFunction.apply(console, arguments);
+
+                                var args = Array.prototype.slice.call(arguments);
+                                for (var i = 0; i < args.length; i++) {
+                                    var node = createLogNode(args[i]);
+                                    document.querySelector("#result").value = args[i];
+                                }
+
+                            }
+                            */
+                            function createLogNode(message) {
+                                var node = document.createElement("div");
+                                var textNode = document.createTextNode(message);
+                                node.appendChild(textNode);
+                                return node;
+                            }
+
+                            window.onerror = function (message, url, linenumber) {
+                                console.log("JavaScript error: " + message + " on line " +
+                                    linenumber + " for " + url);
+                            };
+
+                        })();
+
+                        function exec() {
+                            var s = $('#command').val();
+                            if (s) {
+                                hs.push(s);
+                                eval('(console.log(' + s + '))');
+                            }
+                            $('#command').val("");
+                        }
+
+                        function hist() {
+                            var s = hs.pop();
+                            if ((s) && (s.length > 1)) {
+                                $('#command').val(s);
+                            }
+
+                        }
+                        var myobject = null;
+                        var options = {
+                            homepath: './',
+                            obj_path: 'models/woman1/',
+                            obj_name: 'woman1',
+                            obj_type: 'obj'
+                        };
+
+                        var myviewer = new VRviewer(options).loadObject( viewobject);
+                        //var myviewer = new VRviewer();
+
+                        var op = null;
+                        var obj = null;
+                        viewobject();
+
+                        function viewobject() {
+                            obj = myviewer.getCamera();
+
+                            op = myviewer.getOptionsWatcher();
+                            ml = myviewer.getMeshWatcher();
+                            mi = myviewer.getMeshIDWatcher();
+                            //console.log(myviewer.getMeshIDs());
+
+                        }
+                        //var myviewer = new VRviewer(myobject, options);
+
+
+
+
+                        var sensor_controller00 = null;
+
+                        function align() {
+                            op = myviewer.getOptionsWatcher();
+                            for (var m = -1; m < 1; m++) {
+                                for (var j = -4; j < 4; j++) {
+                                    for (var i = -7; i < 4; i++) {
+                                        var mysensor = myviewer.createSensor();
+                                        mysensor.obj.position.set(0 + j * 20, 2 + m * 8, i * 10);
+                                        if ((i == 1) && (j == 0) && (m == 0)) sensor_controller00 = mysensor;
+                                        else mysensor.para.alert = false;
+                                        var mysensor = myviewer.createSensor();
+                                        mysensor.obj.position.set(5 + j * 20, 2 + m * 8, i * 10);
+                                        mysensor.para.alert = false;
+                                    }
+                                }
+                            }
+                            sensor_controller00.para.alert = true;
+                        }
+                    </script>
+                </div>
+            </li>
+
+        </div>
+
+    </div>
+    <footer data-options="region:'south', height: '30'" class="footer">
+        footer
+    </footer>
+</body>
+
+</html>

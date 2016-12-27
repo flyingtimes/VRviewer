@@ -1,0 +1,29 @@
+{
+    camera: {
+        pos: [-110, 40, 150]
+    },
+    directionalLight: {
+        intensity: 0.2,
+        distance: 50
+    },
+    control: {
+        speed: 0.1
+    },
+    sky: {
+        type: "mountain",
+        pos:[0,100,0]
+    },
+    floor: {
+        visible:true,
+        type:"square",
+        name: "stone",
+        //pos: [0, -8, 0]
+        pos: [0, 0, 0]
+            //    pos: [0, -45, -8]
+    },
+    model: {
+        pos: [0, 0, 0],
+        rotation: [-Math.PI / 2, 0, 0]
+           //     rotation: [0, 0, 0]
+    }
+}

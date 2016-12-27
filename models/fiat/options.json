@@ -1,0 +1,34 @@
+{
+    camera: {
+        pos: [-129, 12, -90]
+    },
+    directionalLight: {
+        intensity: 0.7,
+        distance: 50
+    },
+    spotLight:{
+        intensity:3,
+        //color:0xffffff
+    },
+    control: {
+        speed: 0.1
+    },
+    sky: {
+        type: "street",
+        blur:true,
+        blurPixels:4
+    },
+    floor: {
+        name: "stone",
+        type: "round",
+        //pos: [0, -8, 0]
+        pos: [0, -100, 0]
+            //    pos: [0, -45, -8]
+    },
+    model: {
+        pos: [0, 90, 0],
+        scale:[0.3,0.3,0.3],
+        //rotation: [-Math.PI / 2, 0, 0]
+        rotation: [0, 0, 0]
+    }
+}
