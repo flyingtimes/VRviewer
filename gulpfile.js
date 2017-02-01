@@ -14,10 +14,10 @@ var obfuscate = require('gulp-obfuscate');
 gulp.task('js', function() {
   return gulp.src(['threejs/three.js','helperjs/*.js','js/*.js'])
     .pipe(concat('VRviewer.js')) 
-    .pipe(gulp.dest('dest/js'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest('dest/js'))
+    .pipe(gulp.dest('dist/js'))
     .pipe(notify({ message: 'js task ok' }));
 });
  
